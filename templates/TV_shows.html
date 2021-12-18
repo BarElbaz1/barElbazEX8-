@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      {% extends 'CV.html' %}
+    {% set page_name= 'hobbies page' %}
+    {% include('include_css.html') %}
+<body>
+{% block body %}
+    <h1>MY favorite tv shows are: </h1>
+
+<ul>
+<li>Ozark</li>
+<li>Greys anatomy</li>
+
+
+</ul>{{ super() }}
+{% endblock %}
+
+
+</body>
+</html>

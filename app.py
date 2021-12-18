@@ -15,6 +15,11 @@ def mycv():
     return render_template('CVgrid.html')
 
 
+@app.route('/TV_shows')
+def tv():
+    return render_template('TV_shows.html')
+
+
 @app.route('/assigment8')
 def assigment8():
     return render_template('assigment8.html',
