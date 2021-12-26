@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, redirect, render_template,session,request
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -25,5 +25,44 @@ def assigment8():
     return render_template('assigment8.html',
                            user={'firstname': "Bar", 'lastname': "Elbaz"},
                            hobbies=['going to the beach', 'play piano', 'hang out with friends'])
-    if __name__ == '__main__':
-        app.run(debug=True)
+
+
+@app.route('/assignment9', methods=['GET', 'POST'])
+def assignment9():
+    username = ''
+    users = [{'id': 1, 'email': "yael.golan@reqres.in", 'firstname': "yael", 'lastname': "golan"},
+        {'id': 2, 'email': "carmel.berko@reqres.in", 'firstname': "carmel", 'lastname': "berko"},
+        {'id': 3, 'email': "zohar.dardik@reqres.in", 'firstname': "zohar", 'lastname': "dardik"},
+        {'id': 4, 'email': "gal.elbaz@reqres.in", 'firstname': "gal", 'lastname': "elbaz"},
+        {'id': 5, 'email': "dana.rubin@reqres.in", 'firstname': "dana", 'lastname': "rubin"},
+        {'id': 6, 'email': "hadas.gal@reqres.in", 'firstname': "hadas", 'lastname': "gal"}]
+    firstname = ''
+    logged_in = True
+
+    if request.method == 'GET':
+        if 'firstname' in request.args:
+            firstname = request.args['firstname']
+
+    if request.method == 'POST':
+        username = request.form['username']
+        session['logged_in'] = True
+        session['username'] = username
+    return render_template('assignment9.html',
+                           request_method=request.method,
+                           name=firstname,
+                           users=users,
+                           username=username)
+
+
+@app.route('/log_out')
+def log_out():
+    session.pop('username')
+    session['logged_in'] = False
+    session['username'] = ''
+    return redirect('/assignment9')
+
+
+if __name__ == '__main__' :
+    app.run(debug=True)
+
+

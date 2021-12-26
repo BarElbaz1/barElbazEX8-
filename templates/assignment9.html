@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>assignment 9</title>
+</head>
+<body>
+{% include ('include_css.html') %}
+{% include ('menu.html') %}
+
+
+  <h2> SEARCH FORM:</h2><br>
+    <form action ="/assignment9" method="GET" >
+    <label for="name">Search by first name:</label>
+    <input  name="firstname" type="text"><br><br>
+    <input type="submit" value="Search">
+    </form>
+
+    {% if firstname %}
+        {% for user in users %}
+            {% if user['firstname'] == firstname %}
+                <h3> Full name: {{ user['firstname'] }},{{ user['lastname'] }} , email: {{ user['email'] }}<br>
+                </h3>
+                <br>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% else %}
+        {% if name == ''%}
+          <br>  users list is: <br>
+             {% for user in users %}
+            <h3> Full name: {{ user['firstname'] }},{{ user['lastname'] }} , email: {{ user['email'] }}<br>
+            <h3>
+            <br>
+             {% endfor %}
+         {% endif %}
+    {% endif %}
+    <br>
+
+    {% if session.username %}
+    <a href="/log_out">log out</a>
+    {% else %}
+   <h1>please log in: REGISTRATION FORM:</h1>
+    <form method="POST" action ="/assignment9">
+    <label for="username">Username:</label>
+    <input id='username' name="username"><br><br>
+     <label for="Password">Password:</label>
+    <input id='Password' name="Password"><br><br>
+    <input type="submit" value="Log in">
+    </form>
+
+    {% endif %}
+
+{% if username %}
+        <h2>Welcome,{{session.username}} ! </h2>
+{% endif %}
+<br><br><br><br>
+
+</body>
+</html>

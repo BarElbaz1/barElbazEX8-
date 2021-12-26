@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>CV WEBSITE- Bar Elbaz </title>
-    <h2> welcome {{ firstname | default('Stranger',true) | upper() }} {{ secondName  }} !</h2>
+    <h2> welcome {{ session.username | default('Stranger',true) | upper() }} {{ secondName  }} !</h2>
     {% include('include_css.html') %}
+    {% include ('menu.html') %}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     {% block body %}
 
-    <a href="/CVgrid">VIEW YOUR RESUME</a> | <a href="{{ url_for('assigment8') }}">My hobbies</a> |  <a href="/TV_shows">my tv shows</a>
+    <a href="/CVgrid">VIEW YOUR RESUME</a> | <a href="{{ url_for('assigment8') }}">My hobbies</a> |  <a href="/TV_shows">my tv shows</a> |
+          <a href="/assignment9">users list</a>
 
     {% endblock body %}
 

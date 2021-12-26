@@ -8,6 +8,8 @@
     {% extends 'CV.html' %}
     {% set page_name= 'hobbies page' %}
     {% include('include_css.html') %}
+    {% include ('menu.html') %}
+
     {% block body %}
          {% set user= {'firstname': "Bar" ,'lastname':"Elbaz"}%}
          <h1> {{ user.firstname }} {{ user.lastname }} hobbies</h1>
