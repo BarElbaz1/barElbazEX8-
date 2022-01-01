@@ -62,6 +62,10 @@ def log_out():
     return redirect('/assignment9')
 
 
+from pages.assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
+
 if __name__ == '__main__' :
     app.run(debug=True)
 
